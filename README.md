@@ -30,3 +30,17 @@ install Helm.
 ```
 bin/install-helm.sh
 ```
+
+Add MetalLB. - First run `kubectl edit configmap -n kube-system kube-proxy` and set the
+`strictARP` under `strictARP`. Then run the script while specifying the address range
+
+```
+./bin/install-metallb.sh '192.168.2.210-192.168.2.229'
+```
+
+Add the nginx ingress
+```
+helm repo add nginx-stable https://helm.nginx.com/stable
+helm repo update
+helm install nginx-ingress  nginx-stable/nginx-ingress
+```
