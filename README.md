@@ -18,3 +18,15 @@ kubeadm init --pod-network-cidr "10.222.0.0/16"
 export KUBECONFIG=/etc/kubernetes/admin.conf
 kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
+
+On single-node clusters, untaint the master so you can schedule pods on it
+```
+kubectl taint nodes --all node-role.kubernetes.io/master-
+```
+
+If you want to run kubectl and helm from the VM instead of setting up your kubecnofig locally,
+install Helm.
+
+```
+bin/install-helm.sh
+```
