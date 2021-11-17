@@ -26,11 +26,14 @@ data:
       - $addr_range
 EOH
 
-echo kubectl apply -f $outfile
 kubectl create namespace $namespace
 kubectl apply -f $outfile
 
-helm install -n $namespace -f values.yaml metallb metallb/metallb
+# I don't get why the helm+values.yaml approach doesn't work for me, oh well
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+
 
 echo rm $outfile
 rm $outfile
