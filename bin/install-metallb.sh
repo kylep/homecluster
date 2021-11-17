@@ -11,7 +11,7 @@ outfile="./metallb-config.yaml"
 echo "Generating $outfile with address range $addr_range"
 
 cat > $outfile << EOH
-piVersion: v1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: metallb-system
