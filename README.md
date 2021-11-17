@@ -9,7 +9,7 @@ release of Ubuntu (21.10 to start) and latest version of K8s.
 
 # Initialization
 
-Install docker and kubeadm, init the cluster, add Calico
+Install docker and kubeadm, init the cluster, add Calico. As root:
 
 ```bash
 bin/install-docker.sh
